@@ -18,7 +18,7 @@ type Logger struct {
 
 // Source struct contains the source details
 type Source struct {
-	File string
+	Func string
 	Line int
 }
 
@@ -26,11 +26,15 @@ var log = new(Logger)
 
 func (l *Logger) caller() {
 	var ok bool
-	_, l.Src.File, l.Src.Line, ok = runtime.Caller(3)
+	var pc uintptr
+	pc, _, l.Src.Line, ok = runtime.Caller(3)
 	if !ok {
-		l.Src.File = "???"
+		l.Src.Func = "???"
 		l.Src.Line = 0
+	} else {
+		l.Src.Func = runtime.FuncForPC(pc).Name()
 	}
+
 }
 
 func (l *Logger) message(format string, args []interface{}) *string {
