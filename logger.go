@@ -81,19 +81,19 @@ func Fatal(args ...interface{}) {
 
 // Infof function logs a message with arguments using INFO as log level
 func Infof(format string, args ...interface{}) {
-	s := fmt.Sprint(args...)
-	log.print("info", format, s)
+	s := fmt.Sprintf(format, args...)
+	log.print("info", s)
 }
 
 // Warningf function logs a message with arguments using WARNING as log level
 func Warningf(format string, args ...interface{}) {
-	s := fmt.Sprint(args...)
-	log.print("warning", format, s)
+	s := fmt.Sprintf(format, args...)
+	log.print("warning", s)
 }
 
 // Fatalf function logs a message with arguments using FATAL as log level followed by a call to os.Exit(1)
 func Fatalf(format string, args ...interface{}) {
-	s := fmt.Sprint(args...)
-	log.print("fatal", format, s)
+	s := fmt.Sprintf(format, args...)
+	log.print("fatal", s)
 	os.Exit(1)
 }
