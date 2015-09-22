@@ -60,6 +60,12 @@ func (l *Logger) print(level string, format string, args ...interface{}) {
 	fmt.Println(string(data))
 }
 
+// Auth function logs a message using AUTH as log level
+func Auth(args ...interface{}) {
+	s := fmt.Sprint(args...)
+	log.print("AUTH", "%s", s)
+}
+
 // Info function logs a message using INFO as log level
 func Info(args ...interface{}) {
 	s := fmt.Sprint(args...)
@@ -86,6 +92,12 @@ func Fatal(args ...interface{}) {
 	s := fmt.Sprint(args...)
 	log.print("fatal", "%s", s)
 	os.Exit(1)
+}
+
+// Authf function logs a message with arguments using AUTH as log level
+func Authf(format string, args ...interface{}) {
+	s := fmt.Sprintf(format, args...)
+	log.print("AUTH", s)
 }
 
 // Infof function logs a message with arguments using INFO as log level
